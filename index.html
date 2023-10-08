@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Plotly Plot</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div id="plot"></div>
+    <script>
+        fetch('plot_data.json')
+            .then(response => response.json())
+            .then(data => {
+                const trace = {
+                    x: data.x,
+                    y: data.y,
+                    mode: 'lines',
+                    line: {shape: 'spline'}
+                };
+
+                const layout = {
+                    title: 'Sine Function',
+                    xaxis: {title: 'x'},
+                    yaxis: {title: 'sin(x)'}
+                };
+
+                Plotly.newPlot('plot', [trace], layout);
+            });
+    </script>
+</body>
+</html>
