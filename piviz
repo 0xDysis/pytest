@@ -1,0 +1,33 @@
+import matplotlib.pyplot as plt
+
+# Function to visualize Monte Carlo simulation
+def visualize_monte_carlo(num_samples):
+    np.random.seed(0)  # For reproducibility
+    inside_x = []
+    inside_y = []
+    outside_x = []
+    outside_y = []
+
+    for _ in tqdm(range(num_samples)):
+        x, y = np.random.rand(2)
+        if x**2 + y**2 <= 1:
+            inside_x.append(x)
+            inside_y.append(y)
+        else:
+            outside_x.append(x)
+            outside_y.append(y)
+
+    # Plotting the points
+    plt.figure(figsize=(8, 8))
+    plt.scatter(inside_x, inside_y, color='blue', s=1)
+    plt.scatter(outside_x, outside_y, color='red', s=1)
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.title('Monte Carlo Simulation')
+    plt.show()
+
+# Number of samples
+num_samples = 10000
+
+# Visualize Monte Carlo
+visualize_monte_carlo(num_samples)
